@@ -18,7 +18,7 @@ else
 	FINALNOTES=Build complete.
 endif
 
-CFLAGS ?= -Wall -O3 -include GLibFacade.h -I ./ -D MD_USE_GET_OPT=1 
+CFLAGS ?= -Wall -O3 -include GLibFacade.h -I ./ -D MD_USE_GET_OPT=1 -fPIC 
 ifeq ($(UNAME), SunOS)
 	CC = gcc
 	# Use of <stdbool.h> is valid only in a c99 compilation environment
