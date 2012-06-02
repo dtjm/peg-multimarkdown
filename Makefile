@@ -40,10 +40,6 @@ ifeq ($(ARCH), i386)
 	CFLAGS += -arch i386
 endif
 
-ifeq ($(HOSTTYPE), x86_64)
-	CFLAGS += -fPIC
-endif
-
 OBJS=markdown_parser.o markdown_output.o markdown_lib.o GLibFacade.o
 PEGDIR_ORIG=peg-0.1.4
 PEGDIR=peg
@@ -61,7 +57,7 @@ $(LEG): $(PEGDIR)
 	CC=gcc $(MAKE) -C $(PEGDIR)
 
 %.o : %.c markdown_peg.h
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -fPIC -o $@ $<
 
 $(PROGRAM) : markdown.c $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $<
