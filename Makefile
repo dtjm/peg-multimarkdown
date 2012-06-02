@@ -18,7 +18,7 @@ else
 	FINALNOTES=Build complete.
 endif
 
-CFLAGS ?= -Wall -O3 -include GLibFacade.h -I ./ -D MD_USE_GET_OPT=1 -fPIC 
+CFLAGS ?= -Wall -O3 -include GLibFacade.h -I ./ -D MD_USE_GET_OPT=1 
 ifeq ($(UNAME), SunOS)
 	CC = gcc
 	# Use of <stdbool.h> is valid only in a c99 compilation environment
@@ -38,6 +38,10 @@ endif
 # build for i386 architecture - useful with older machines or those running 10.4?
 ifeq ($(ARCH), i386)
 	CFLAGS += -arch i386
+endif
+
+ifeq ($(HOSTTYPE), x86_64)
+	CFLAGS += -fPIC
 endif
 
 OBJS=markdown_parser.o markdown_output.o markdown_lib.o GLibFacade.o
